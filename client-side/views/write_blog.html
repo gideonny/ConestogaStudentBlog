@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a blogpost!</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/conestogaStudentBlog.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Conestoga's Student Blog</h1>
+        <nav>
+            <a href="/client-side/views/main.html">Blog</a>
+            <a href="/client-side/views/write_blog.html">Write a blog</a>
+            <a href="/client-side/views/admin_review_page.html">Content review page</a>
+        </nav>
+
+        <form>
+            <table class="writeBlog">
+                <tr>
+                    <td class="blogLabel">
+                        <label>Title:</label>
+                    </td>
+
+                    <td>
+                        <input type="text" name="blogTitle" id="blogTitle" >
+                    </td>
+                </tr>
+                <tr>
+                    <td class="blogLabel">
+                        <label>Write a post:</label>
+                    </td>
+                    <td>
+                        <textarea name="blogPost" id="blogPost"></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="submitPost" colspan="2">
+                        <button type="submit">Submit post</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <div class="disclaimer">
+            <p>Please allow for admin to review the blog post before it is posted.</p>
+        </div>
+        <footer>
+            &copy; Gideon Nyamuame - Gnyamuame@conestogac.on.ca
+        </footer>
+
+            
+
+    </div>
+</body>
+</html>

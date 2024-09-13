@@ -1,0 +1,102 @@
+<%- include('layouts/header') %>
+<title>Write a blog</title>
+<%- include('layouts/head-nav') %>
+
+
+<!--The encoding type here is necessary to handle file uploads-->
+<form method="POST" action="/writeBlog" id="blogForm" onsubmit="return submitForm()" enctype="multipart/form-data">
+    <table class="writeBlog">
+
+        <tr>
+            <td class="blogLabel">
+                <label>Alias:</label>
+            </td>
+            <td>
+                <input type="text" name="blogAlias" id="blogAlias">
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="blogLabel">
+                <label>Title:</label>
+            </td>
+            <td>
+                <input type="text" name="blogTitle" id="blogTitle">
+            </td>
+        </tr>
+
+        <tr>
+            <td class="blogLabel">
+                <label>Image:</label>
+            </td>
+            <td>
+                <input type="file" name="blogImage" id="blogImage">
+            </td>
+        </tr>
+
+        
+
+        <tr>
+            <td class="blogLabel">
+                <label>Blogpost:</label>
+            </td>
+            <!--Using quill to generate rich text for the blog-->
+            <td class="quill">
+                <div id="quill" style="height: 200px;"></div>
+                <input type="hidden" name="blogContent" id="blogContent">
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="visibility" name="visibility"></td>
+            <td class="submitPost">
+                <button type="submit">Submit post</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="errorOrSuccess">
+                <% if (typeof errorMessages !== 'undefined' && errorMessages.length > 0) { %>               
+                    <% errorMessages.forEach(function(msg) { %>
+                        <p class="error"><%= msg %></p>   
+                    <% }); %>
+                <% } %>
+                <% if (typeof success !== 'undefined' && success !== "") { %>
+                    <p><%= success %></p>
+                <% } %>
+            </td>
+        </tr>
+    </table>
+
+
+
+</form>
+
+<div class="disclaimer">
+    <p>Please allow for admin to review the blog post before it is posted.</p>
+</div>
+
+<script>
+    const quill = new Quill('#quill', {
+        theme: 'snow'
+    });
+
+    function submitForm() {
+
+        let content = quill.root.innerHTML;
+        let strippedContent = content.replace(/<[^>]*>/g, '').trim();
+        if (strippedContent === '') {
+        alert('Blog content cannot be empty');
+        return false;
+    }
+        
+        // Copy the HTML content from Quill editor to the hidden input
+        document.getElementById('blogContent').value = quill.root.innerHTML;
+
+
+    };
+    
+
+
+</script>
+
+<%- include('layouts/footer') %>
+

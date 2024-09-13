@@ -1,0 +1,25 @@
+<%- include('layouts/header') %>
+    <title>Admin Login</title>
+<%- include('layouts/head-nav') %>
+    <main>
+        <div class="login">
+            <form action="login" method="post">
+                <table>
+                    <tr>
+                        <td><label>Username:</label></td>
+                        <td><input name="username" type="text"></td>
+                    </tr>
+
+                    <tr>
+                        <td><label>Password: </label></td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+
+                    <tr>
+                        <td><button type="submit">Login</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </main>
+<%- include('layouts/footer') %>

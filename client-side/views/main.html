@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conestoga's Student Blog</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/conestogaStudentBlog.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Conestoga's Student Blog</h1>
+        <nav>
+            <a href="/client-side/views/main.html">Blog</a>
+            <a href="/client-side/views/write_blog.html">Write a blog</a>
+            <a href="/client-side/views/admin_review_page.html">Content review page</a>
+        </nav>
+
+        
+        <table class="blog">
+            <% if (typeof(blogPost) !== 'undefined') {
+                for (let blog of blogPost) { %>
+            <thead>
+                <tr>
+                    <th>
+                        <%= blogPost.username %>
+                    </th>
+                    <th>
+                        <%= blogPost.title %>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                    <tr>
+                        <td colspan="2"><%= blogPost.content %></td>  
+                    </tr>
+                    <% } %>
+                <% } %>
+
+            </tbody>
+        </table>
+        <footer>
+            &copy; Gideon Nyamuame - Gnyamuame@conestogac.on.ca
+        </footer>
+    </div>
+    
+</body>
+</html>

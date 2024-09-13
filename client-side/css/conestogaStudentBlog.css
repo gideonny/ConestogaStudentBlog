@@ -1,0 +1,53 @@
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+nav {
+    border: 2px solid black;
+    text-align: center;
+    font-size: 22px;
+}
+
+nav a {
+    border: 2px solid black;
+    margin: 0 100px 0 100px;   
+}
+
+.writeBlog {
+    width: 50%;
+    border: 2px solid black;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#blogContent {
+    height: 200px;
+    width: 100%;
+}
+
+#blogTitle {
+    width: 100%;
+}
+
+.blogLabel {
+    border: 2px solid black;
+    text-align: right;
+    padding: 10px;
+    
+}
+
+.submitPost {
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.disclaimer {
+    border: 2px solid black;
+    text-align: center;
+}

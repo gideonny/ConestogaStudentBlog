@@ -1,0 +1,74 @@
+<%- include('layouts/header') %>
+<title>Logout</title> 
+<%- include('layouts/head-nav') %>
+
+<div class="logout">
+    <a href="/logout">Logout</a>
+</div>
+
+<table class="blogReview">
+    <% if (typeof(blogPosts) !== 'undefined' && blogPosts.length > 0) { %>
+        <% for (let blogPost of blogPosts) {
+             
+            <!--The first line converts the date generated in my mongodb model, to a js date object. the second line converts that to date and time in the format i want-->
+             const date = new Date(blogPost.blogDate);
+             const formattedDate = date.toDateString() + ' ' + date.toTimeString().split(' ')[0];
+              %>
+            
+            <form action="/updatePost/<%= blogPost._id %>" method="POST">
+                
+                    <tr>
+                        <td class="blogAlias">
+                            Alias: <span class="alias"><%= blogPost.blogAlias %></span>
+                        </td>
+                        <td class="blogPostTitle">
+                            <a href="/blog/<%= blogPost.blogTitle %>_<%= blogPost._id %>"><%= blogPost.blogTitle %></a>
+                        </td>
+                        <td class="blogVisibility">
+                            Visibility: <input type="checkbox" name="newVisibility" <% if (blogPost.visibility) { %> checked <% } %> />
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="blogPostContent">
+                            <textarea name="editedContent"><%- blogPost.blogContent %></textarea>
+                        </td>
+                        <td class="updateButton">
+                            <button type="submit">Update</button>
+                        </td>
+                          
+                    </tr>
+
+                    <tr>
+                        <td class="blogPostImage" colspan="2">                    
+                            <% if (blogPost.blogImage) { %>
+                                <img src="/uploads/<%= blogPost.blogImage %>" alt="Blog Image" class="blogPostImage">
+                            <% } %>
+                        </td>
+
+                        
+                    </tr>
+                
+                    <tr>
+                        <td class="blogPostDate" colspan="3">
+        
+                            
+                            Date posted: <%= formattedDate %>
+                        </td>
+                    </tr>
+                </form>
+                
+            
+
+        
+        <% } %>
+    <% } else { %>
+        <thead>
+            <tr>
+                <th>No blog posts available</th>
+            </tr>
+        </thead>
+    <% } %>
+</table>
+
+<%- include('layouts/footer') %>

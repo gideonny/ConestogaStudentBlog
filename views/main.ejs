@@ -1,0 +1,57 @@
+<%- include('layouts/header') %>
+<title>Conestoga's Student Blog</title> 
+<%- include('layouts/head-nav') %>
+
+<h2 class="blogHeader">Student's Posts</h2>
+<table class="blog">
+    
+    <% if (typeof(blogPosts) !== 'undefined' && blogPosts.length > 0) {
+        for (let blogPost of blogPosts) {
+            
+            <!--The first line converts the date generated in my mongodb model, to a js date object. the second line converts that to date and time in the format i want-->
+            const date = new Date(blogPost.blogDate);
+            const formattedDate = date.toDateString() + ' ' + date.toTimeString().split(' ')[0];
+             %>
+
+
+        
+            <tr>
+                <td class="blogAlias">
+                    Alias: <span class="alias"><%= blogPost.blogAlias %></span>
+                </td>
+                <td class="blogPostTitle">
+                    <%= blogPost.blogTitle %>
+                </td>
+                
+            </tr>
+        
+            <tr>
+                <!-- the dash here makes it so that ejs renders the html content instead of just displaying the content as a string-->
+                <td colspan="2" class="blogPostContent"><%- blogPost.blogContent %></td>  
+            </tr>
+
+            <tr>
+                <td class="blogPostImage" colspan="2">                    
+                    <% if (blogPost.blogImage) { %>
+                        <img src="/uploads/<%= blogPost.blogImage %>" alt="Blog Image" class="blogPostImage">
+                    <% } %>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="blogPostDate" colspan="2">                    
+                    Date posted: <%= formattedDate %>
+                </td>
+            </tr>
+       
+
+    <% } } else { %>
+        <thead>
+            <tr>
+                <th>No blog posts available</th>
+            </tr>
+        </thead>
+    <% } %>
+</table>
+
+<%- include('layouts/footer') %>
